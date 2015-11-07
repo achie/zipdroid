@@ -9,6 +9,7 @@ import com.zipcode.module.ZipdroidComponent;
 public class ZipdroidApplication extends Application {
 
     private ZipdroidComponent mZipdroidComponent;
+    public static final String DEVELOPER_KEY = "AIzaSyDRGj6kVrU-OZ1IHg1Nc4TbWC-91RjRafo";
 
     @Override
     public void onCreate() {

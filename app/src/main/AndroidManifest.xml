@@ -28,6 +28,10 @@
             android:name=".listing.ListingActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".VideoActivity"
+            android:label="@string/app_name" >
+        </activity>
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyDRGj6kVrU-OZ1IHg1Nc4TbWC-91RjRafo"/>
