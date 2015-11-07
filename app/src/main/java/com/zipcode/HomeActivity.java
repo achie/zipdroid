@@ -1,24 +1,28 @@
 package com.zipcode;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
-public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
-	private MapFragment mapFragment;
+public class HomeActivity extends BaseActivity implements OnMapReadyCallback {
+    private MapFragment mMapFragment;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
-		mapFragment = (MapFragment) getFragmentManager()
-				.findFragmentById(R.id.map);
-		mapFragment.getMapAsync(this);
-	}
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_home;
+    }
 
-	@Override
-	public void onMapReady(GoogleMap map) {
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mMapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mMapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+    }
 }
