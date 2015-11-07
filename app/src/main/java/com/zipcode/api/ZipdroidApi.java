@@ -7,7 +7,7 @@ import retrofit.http.GET;
 
 public interface ZipdroidApi {
 
-    @GET("listing")
+    @GET("/listing")
     void getListings(Callback<ListingsResponse> callback);
 
 }
