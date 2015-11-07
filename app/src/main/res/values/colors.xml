@@ -12,4 +12,9 @@
     <color name="textSecondary">#727272</color>
     <color name="textHint">#B6B6B6</color>
     <color name="divider">#B6B6B6</color>
+
+
+    <color name="bg_listing_image_subtitle_start">#88727272</color>
+    <color name="bg_listing_image_subtitle_center">#88727272</color>
+    <color name="bg_listing_image_subtitle_end">#88727272</color>
 </resources>

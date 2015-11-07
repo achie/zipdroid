@@ -7,12 +7,14 @@
 
     <include layout="@layout/include_activity_toolbar" />
 
-    <ViewPager
-        android:id="@+id/vp_listing_images"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<ViewPager-->
+        <!--android:id="@+id/vp_listing_images"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-    </ViewPager>
+    <!--</ViewPager>-->
+
+    <include layout="@layout/include_listing_image" />
 
     <fragment
         android:id="@+id/map"
