@@ -8,11 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import butterknife.OnClick;
 import com.zipcode.listing.ListingActivity;
 import com.zipcode.model.response.ListingsResponse;
-
-import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -20,6 +18,7 @@ import retrofit.client.Response;
 public class MainActivity extends BaseActivity {
 
     private Button btnHome;
+    private Button btnVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ListingActivity.class));
+            }
+        });
+
+        btnVideo = (Button)findViewById(R.id.btnVideoView);
+        btnVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VideoActivity.class));
             }
         });
     }

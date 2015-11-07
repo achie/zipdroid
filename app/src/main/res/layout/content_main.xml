@@ -31,5 +31,12 @@
             android:id="@+id/btnHomeView"
             android:layout_alignParentTop="true" android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"/>
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Video"
+            android:id="@+id/btnVideoView"
+            android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"/>
 
 </LinearLayout>
