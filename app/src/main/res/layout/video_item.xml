@@ -16,20 +16,57 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="240dp">
 
     <ImageView
             android:id="@+id/videoListImage"
-            android:layout_height="140dp"
-            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_width="240dp"
             android:background="@color/accentLight"
         />
     <TextView
-            android:id="@+id/videoListContent"
-            android:layout_toEndOf="@+id/videoListImage"
-            android:layout_height="140dp"
+            android:id="@+id/videoListPrice"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_listing_subtitle"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:text="$1,200,000"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            />
+    <LinearLayout
             android:layout_width="match_parent"
-            android:padding="5dp"
-            android:textSize="18sp"
-        />
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/videoListImage"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:orientation="vertical"
+            android:background="#eeeeee"
+            >
+        <TextView
+                android:id="@+id/videoListSqft"
+                android:layout_height="160dp"
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:textSize="25sp"
+                android:text="2,000 sqft"
+                />
+        <TextView
+                android:id="@+id/videoListBed"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:textSize="25sp"
+                android:text="3 BED"
+                />
+        <TextView
+                android:id="@+id/videoListBath"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:textSize="25sp"
+                android:text="4 BATH"
+                />
+    </LinearLayout>
 </RelativeLayout>

@@ -24,7 +24,6 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.zipcode.listing.VideoAdapter;
 import com.zipcode.model.Listing;
-import com.zipcode.model.response.ListingsResponse;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -47,11 +46,9 @@ public class VideoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        // TODO switch to video list once it's ready
-        mApi.getListings(new Callback<ListingsResponse>() {
+        mApi.getVideos(new Callback<List<Listing> >() {
             @Override
-            public void success(ListingsResponse o, Response response) {
-                List<Listing> listings = o.getListings();
+            public void success(List<Listing> listings, Response response) {
                 ListView videoList = (ListView) findViewById(R.id.videoListView);
                 videoList.setAdapter(new VideoAdapter(VideoActivity.this, R.layout.video_item, listings));
             }

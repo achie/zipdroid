@@ -2,12 +2,13 @@ package com.zipcode.api;
 
 import com.zipcode.model.Listing;
 import com.zipcode.model.response.ListingsResponse;
-import com.zipcode.model.response.VideosResponse;
 import com.zipcode.model.response.VotesResponse;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.GET;
 import retrofit.http.POST;
+
+import java.util.List;
 
 public interface ZipdroidApi {
 
@@ -20,8 +21,8 @@ public interface ZipdroidApi {
     @GET("/vote")
     void getVotes(Callback<VotesResponse> callback);
 
-    @GET("/activity_video")
-    void getVideos(Callback<VideosResponse> callback);
+    @GET("/video")
+    void getVideos(Callback<List<Listing>> callback);
 
     @POST("/vote/{voteId}")
     void postVote(

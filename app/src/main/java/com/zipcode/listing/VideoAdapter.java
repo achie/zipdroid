@@ -17,6 +17,8 @@ import com.zipcode.R;
 import com.zipcode.ZipdroidApplication;
 import com.zipcode.model.Listing;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class VideoAdapter extends ArrayAdapter<Listing> {
@@ -50,7 +52,10 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
 
             holder = new ListingHolder();
             holder.videoListImage = (ImageView)row.findViewById(R.id.videoListImage);
-            holder.videoListContent = (TextView)row.findViewById(R.id.videoListContent);
+            holder.videoListPrice = (TextView)row.findViewById(R.id.videoListPrice);
+            holder.videoListSqft = (TextView)row.findViewById(R.id.videoListSqft);
+            holder.videoListBed = (TextView)row.findViewById(R.id.videoListBed);
+            holder.videoListBath = (TextView)row.findViewById(R.id.videoListBath);
 
             row.setTag(holder);
         }
@@ -59,8 +64,12 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
             holder = (ListingHolder)row.getTag();
         }
 
-        Listing listing = mListings.get(position);
-        holder.videoListContent.setText(listing.getAddress() + "\n\n$" + listing.getPrice());
+        final Listing listing = mListings.get(position);
+
+        holder.videoListPrice.setText(NumberFormat.getCurrencyInstance().format(listing.getPrice()));
+        holder.videoListSqft.setText(String.format("%1$d sqft", (int) listing.getLivingArea()));
+        holder.videoListBed.setText(String.format("%1$d BED", listing.getBedrooms()));
+        holder.videoListBath.setText(String.format("%1$s BATH", (new DecimalFormat("#.#")).format(listing.getBaths())));
 
         Picasso.with(mContext)
                 .load(listing.getMedia().get(0).getUrl())
@@ -76,7 +85,7 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
 
                 Activity activity = (Activity) mContext;
                 Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                        activity, ZipdroidApplication.DEVELOPER_KEY, VIDEO_ID, startTimeMillis, autoplay, lightboxMode);
+                        activity, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
 
                 if (intent != null) {
                     if (canResolveIntent(intent)) {
@@ -96,7 +105,10 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
     static class ListingHolder
     {
         ImageView videoListImage;
-        TextView videoListContent;
+        TextView videoListSqft;
+        TextView videoListBed;
+        TextView videoListBath;
+        TextView videoListPrice;
     }
 
     private boolean canResolveIntent(Intent intent) {
