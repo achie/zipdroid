@@ -7,6 +7,7 @@ import android.util.Log;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.viewpagerindicator.CirclePageIndicator;
 import com.zipcode.BaseActivity;
 import com.zipcode.R;
 import com.zipcode.model.Listing;
@@ -28,6 +29,8 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
 //    TextView mListingImageSubtitle;
     @InjectView(R.id.listing_images_pager)
     ViewPager mListingImagesPager;
+    @InjectView(R.id.image_position_indicator)
+    CirclePageIndicator mPageIndicator;
 
     private ListingImagePagingAdapter mImagesAdapter;
 
@@ -45,6 +48,7 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
 
         mImagesAdapter = new ListingImagePagingAdapter(getSupportFragmentManager(), new ArrayList<Media>());
         mListingImagesPager.setAdapter(mImagesAdapter);
+        mPageIndicator.setViewPager(mListingImagesPager);
         loadListing();
     }
 
@@ -72,6 +76,7 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
     private void loadImages(List<Listing> listings) {
         if (listings != null && !listings.isEmpty()) {
             mImagesAdapter.setMedia(listings.get(0).getMedia());
+            mPageIndicator.notifyDataSetChanged();
         }
     }
 }

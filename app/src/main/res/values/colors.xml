@@ -13,8 +13,11 @@
     <color name="textHint">#B6B6B6</color>
     <color name="divider">#B6B6B6</color>
 
-
-    <color name="bg_listing_image_subtitle_start">#11000000</color>
+    <color name="bg_listing_image_subtitle_start">#07000000</color>
     <color name="bg_listing_image_subtitle_center">#55000000</color>
     <color name="bg_listing_image_subtitle_end">#99000000</color>
+
+    <color name="image_pager_dot_normal">#07673AB7</color>
+    <color name="image_pager_dot_selected">#ee673AB7</color>
+    <color name="image_pager_dot_border">#99000000</color>
 </resources>

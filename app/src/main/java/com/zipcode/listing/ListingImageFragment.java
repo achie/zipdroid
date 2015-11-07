@@ -28,10 +28,8 @@ public class ListingImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(
+        ImageView imageView = (ImageView) inflater.inflate(
                 R.layout.fragment_listing_image, container, false);
-
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.listing_image);
 
         Picasso.with(getContext())
                 .load(mImageUrl)
@@ -39,7 +37,7 @@ public class ListingImageFragment extends Fragment {
                 .centerCrop()
                 .into(imageView);
 
-        return rootView;
+        return imageView;
     }
 
     public static ListingImageFragment getInstance(String url) {

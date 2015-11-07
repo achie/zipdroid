@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ImageView
+    android:id="@+id/listing_image"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/listing_image_height"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".listing.ListingActivity"
-    tools:showIn="@layout/activity_listing">
-
-    <ImageView
-        android:id="@+id/listing_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/listing_image_subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_listing_subtitle"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:text="$1,200,000"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-</RelativeLayout>
+    android:layout_height="match_parent" />

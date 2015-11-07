@@ -21,14 +21,26 @@
             android:id="@+id/image_position_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFCCCCCC"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:padding="10dip"
-            app:fillColor="#FF888888"
-            app:pageColor="@color/accent"
-            app:radius="10dp"
-            app:strokeColor="#FF000000"
-            app:strokeWidth="2dp" />
+            app:fillColor="@color/image_pager_dot_selected"
+            app:pageColor="@color/image_pager_dot_normal"
+            app:radius="2dp"
+            app:strokeColor="@color/image_pager_dot_border"
+            app:strokeWidth="1dp" />
+
+        <TextView
+            android:id="@+id/listing_image_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_listing_subtitle"
+            android:paddingBottom="8dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:text="$1,200,000"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
