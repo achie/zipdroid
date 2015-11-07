@@ -1,6 +1,7 @@
 package com.zipcode.listing;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,7 +59,8 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
 
             @Override
             public void failure(RetrofitError error) {
-
+                error.printStackTrace();
+                Log.v("$#######" , "Retrofit error; " + error.getMessage());
             }
         });
     }
@@ -67,6 +69,7 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
         if (listings != null && !listings.isEmpty()) {
             Picasso.with(this)
                     .load(listings.get(0).getMedia().get(0).getUrl())
+                    .fit()
                     .centerCrop()
                     .into(mListingImage);
         }

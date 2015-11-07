@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.zipcode.api.ZipdroidApi;
+import com.zipcode.utils.JacksonConverter;
 
 import javax.inject.Singleton;
 
@@ -55,7 +56,9 @@ public class ApiModule {
     @Provides
     @Singleton
     public RestAdapter provideRestAdapter(Endpoint endpoint, Client client, RequestInterceptor interceptor){
+        JacksonConverter jacksonConverter = new JacksonConverter();
         return new RestAdapter.Builder()
+                .setConverter(jacksonConverter)
                 .setEndpoint(endpoint)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setClient(client)
