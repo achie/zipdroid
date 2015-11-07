@@ -5,8 +5,8 @@
     <color name="primaryLight">#D1C4E9</color>
 
     <color name="accent">#FFC107</color>
-    <color name="accentDark">#FFC107</color>
-    <color name="accentLight">#FFC107</color>
+    <color name="accentDark">#624900</color>
+    <color name="accentLight">#ffde79</color>
 
     <color name="textPrimary">#212121</color>
     <color name="textSecondary">#727272</color>

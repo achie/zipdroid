@@ -20,7 +20,7 @@ public interface ZipdroidApi {
     @GET("/vote")
     void getVotes(Callback<VotesResponse> callback);
 
-    @GET("/video")
+    @GET("/activity_video")
     void getVideos(Callback<VideosResponse> callback);
 
     @POST("/vote/{voteId}")
