@@ -24,6 +24,7 @@ public class ListingImagePagingAdapter extends FragmentStatePagerAdapter {
         }
         mMedia.clear();
         mMedia.addAll(media);
+        notifyDataSetChanged();
     }
 
     @Override
