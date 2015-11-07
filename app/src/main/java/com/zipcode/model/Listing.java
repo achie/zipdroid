@@ -167,7 +167,7 @@ public class Listing {
     private int mTotalStories;
 
     @JsonProperty("baths")
-    private int mBaths;
+    private double mBaths;
 
     @JsonProperty("halfBaths")
     private int mHalfBaths;
@@ -306,6 +306,9 @@ public class Listing {
 
     @JsonProperty("mlsAgentID")
     private String mMlsAgentID;
+
+    @JsonProperty("video")
+    private Video mVideo;
 
     public String getAgent() {
         return mAgent;
@@ -633,14 +636,6 @@ public class Listing {
 
     public void setTotalStories(int totalStories) {
         mTotalStories = totalStories;
-    }
-
-    public int getBaths() {
-        return mBaths;
-    }
-
-    public void setBaths(int baths) {
-        mBaths = baths;
     }
 
     public int getHalfBaths() {
@@ -1010,4 +1005,21 @@ public class Listing {
     public void setMlsAgentID(String mlsAgentID) {
         mMlsAgentID = mlsAgentID;
     }
+
+    public Video getVideo() {
+        return mVideo;
+    }
+
+    public void setVideo(Video video) {
+        mVideo = video;
+    }
+
+    public double getBaths() {
+        return mBaths;
+    }
+
+    public void setBaths(double baths) {
+        mBaths = baths;
+    }
+
 }
