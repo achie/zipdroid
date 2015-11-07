@@ -17,16 +17,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical" >
 
-  <Button
-      android:id="@+id/start_video_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="5dp"
-      android:minWidth="210dp"
-      android:text="Play Video"/>
-
+    <include layout="@layout/include_activity_toolbar" />
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/videoListView"/>
 </LinearLayout>
