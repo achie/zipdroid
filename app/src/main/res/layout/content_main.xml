@@ -22,6 +22,14 @@
     <Button
         android:id="@+id/btn_test"
         android:text="Test listing api"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Home"
+            android:id="@+id/btnHomeView"
+            android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"/>
+
 </LinearLayout>
