@@ -1,17 +1,19 @@
-package com.zipcode;
+package com.zipcode.listing;
 
 import android.os.Bundle;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.zipcode.BaseActivity;
+import com.zipcode.R;
 
-public class HomeActivity extends BaseActivity implements OnMapReadyCallback {
+public class ListingActivity extends BaseActivity implements OnMapReadyCallback {
     private MapFragment mMapFragment;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_home;
+        return R.layout.activity_listing;
     }
 
     @Override

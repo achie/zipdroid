@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.zipcode.listing.ListingActivity;
 import com.zipcode.model.response.ListingsResponse;
 import android.widget.Button;
 
@@ -39,7 +41,7 @@ public class MainActivity extends BaseActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                startActivity(new Intent(MainActivity.this, ListingActivity.class));
             }
         });
     }
