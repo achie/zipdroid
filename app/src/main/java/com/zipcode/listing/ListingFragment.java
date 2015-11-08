@@ -53,9 +53,11 @@ public class ListingFragment extends Fragment {
 
         if (mListingsTransmitter != null) {
             List<Listing> listings = mListingsTransmitter.getListings();
-            if (listings != null && listings.size() >= mListingPosition) {
-                mImagesAdapter.setMedia(listings.get(mListingPosition).getMedia());
-                pageIndicator.notifyDataSetChanged();
+            if (listings != null && listings.size() > mListingPosition) {
+                if (listings.get(mListingPosition).getMedia() != null) {
+                    mImagesAdapter.setMedia(listings.get(mListingPosition).getMedia());
+                    pageIndicator.notifyDataSetChanged();
+                }
             }
         }
 

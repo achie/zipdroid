@@ -1,11 +1,13 @@
 package com.zipcode.listing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.zipcode.BaseActivity;
 import com.zipcode.R;
+import com.zipcode.VideoActivity;
 import com.zipcode.model.Listing;
 import com.zipcode.model.response.ListingsResponse;
 
@@ -83,11 +85,13 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
 
     private void showNextListing() {
         mCurrentListingPosition++;
-        if (mListings.size() >= mCurrentListingPosition) {
+        if (mListings.size() > mCurrentListingPosition) {
             ListingFragment newFragment = ListingFragment.getInstance(mCurrentListingPosition);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.scrollView, newFragment);
             transaction.commit();
+        } else {
+            startActivity(new Intent(this, VideoActivity.class));
         }
     }
 }
