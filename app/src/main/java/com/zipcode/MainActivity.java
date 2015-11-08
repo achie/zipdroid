@@ -8,9 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import butterknife.OnClick;
+
 import com.zipcode.listing.ListingActivity;
 import com.zipcode.model.response.ListingsResponse;
+
+import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -90,5 +92,10 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    protected boolean showUpNavigation() {
+        return false;
     }
 }
