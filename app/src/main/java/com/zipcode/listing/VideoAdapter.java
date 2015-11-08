@@ -2,17 +2,17 @@ package com.zipcode.listing;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
 import com.zipcode.R;
 import com.zipcode.model.Listing;
+import com.zipcode.utils.ViewUtils;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -61,10 +61,11 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
         holder.videoDisplayName.setText(listing.getDisplayName());
         holder.videoAddress.setText(listing.getAddress());
         holder.videoDistance.setText(String.format("%1$s miles from you!", (new DecimalFormat("#.#")).format(listing.getDistance())));
+
         if (listing.isSelected()) {
-            holder.videoItemContainer.setBackgroundColor(mContext.getColor(R.color.lightGray));
+            holder.videoItemContainer.setBackgroundColor(ViewUtils.getColor(mContext, R.color.lightGray));
         } else {
-            holder.videoItemContainer.setBackgroundColor(mContext.getColor(android.R.color.white));
+            holder.videoItemContainer.setBackgroundColor(ViewUtils.getColor(mContext, android.R.color.white));
         }
 
         Picasso.with(mContext)

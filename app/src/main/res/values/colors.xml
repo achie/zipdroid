@@ -4,6 +4,10 @@
     <color name="primaryDark">#1976D2</color>
     <color name="primaryLight">#BBDEFB</color>
 
+    <color name="colorControlNormal">@color/primaryLight</color>
+    <color name="colorControlActivated">#C7E8FC</color>
+    <color name="colorControlHighlight">#C7E8FC</color>
+
     <color name="accent">#8BC34A</color>
     <color name="accentDark">#689F38</color>
     <color name="accentLight">#DCEDC8</color>
@@ -24,4 +28,5 @@
     <color name="image_pager_dot_border">#55ffffff</color>
 
     <color name="lightGray">#EEEEEE</color>
+    <color name="background_material_light">#ffffff</color>
 </resources>

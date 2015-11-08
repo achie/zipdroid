@@ -92,6 +92,7 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
             transaction.commit();
         } else {
             startActivity(new Intent(this, VideoActivity.class));
+            finish();
         }
     }
 }
