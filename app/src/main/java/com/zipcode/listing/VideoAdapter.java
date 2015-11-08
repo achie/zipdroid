@@ -72,33 +72,6 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
                 .fit()
                 .centerCrop()
                 .into(holder.videoListImage);
-        row.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //int startTimeMillis = 0;
-                //boolean autoplay = true;
-                //boolean lightboxMode = false;
-
-                //Activity activity = (Activity) mContext;
-                //Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                //        activity, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
-
-                //if (intent != null) {
-                //    if (canResolveIntent(intent)) {
-                //        activity.startActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
-                //    } else {
-                //        // Could not resolve the intent - must need to install or update the YouTube API service.
-                //        YouTubeInitializationResult.SERVICE_MISSING
-                //                .getErrorDialog(activity, REQ_RESOLVE_SERVICE_MISSING).show();
-                //    }
-                //}
-                for (Listing l: mListings) {
-                    l.setSelected(false);
-                }
-                listing.setSelected(true);
-                notifyDataSetChanged();
-            }
-        });
 
         return row;
     }
