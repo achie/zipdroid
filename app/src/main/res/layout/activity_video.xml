@@ -20,8 +20,13 @@
     android:orientation="vertical" >
 
     <include layout="@layout/include_activity_toolbar" />
+    <com.google.android.youtube.player.YouTubeThumbnailView
+            android:id="@+id/videoThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
     <ListView
+            android:choiceMode="singleChoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/videoListView"/>
+            android:id="@+id/videoListView" />
 </LinearLayout>

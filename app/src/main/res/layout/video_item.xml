@@ -22,7 +22,6 @@
             android:id="@+id/videoListImage"
             android:layout_height="match_parent"
             android:layout_width="120dp"
-            android:background="@color/accentLight"
         />
     <TextView
             android:id="@+id/videoListPrice"
@@ -36,6 +35,7 @@
             android:gravity="center"
             />
     <LinearLayout
+            android:id="@+id/videoItemContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/videoListImage"
@@ -46,12 +46,13 @@
             >
         <TextView
                 android:id="@+id/videoDisplayName"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:paddingTop="5dp"
-                android:textSize="28sp"
+                android:textSize="22sp"
                 android:text="Cheesy Tower"
                 android:textColor="@color/primaryDark"
+                android:maxLines="1"
                 />
         <TextView
                 android:id="@+id/videoAddress"

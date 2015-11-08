@@ -6,8 +6,13 @@ import com.zipcode.utils.DateUtils;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class Listing {
+    public Listing() {
+        Random rand = new Random();
+        mDistance = ((double)rand.nextInt(30))/10.0;
+    }
     @JsonProperty("agent")
     private String mAgent;
 
@@ -312,6 +317,24 @@ public class Listing {
 
     @JsonProperty("displayName")
     private String displayName;
+
+    @JsonIgnore
+    private boolean mSelected;
+
+    @JsonIgnore
+    private double mDistance;
+
+    public double getDistance() {
+        return mDistance;
+    }
+
+    public boolean isSelected() {
+        return mSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.mSelected = selected;
+    }
 
     public String getAgent() {
         return mAgent;

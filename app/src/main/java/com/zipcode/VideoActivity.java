@@ -37,9 +37,6 @@ import java.util.List;
 public class VideoActivity extends BaseActivity {
 
     private static final int REQ_START_STANDALONE_PLAYER = 1;
-    private static final int REQ_RESOLVE_SERVICE_MISSING = 2;
-
-    private static final String VIDEO_ID = "cdgQpa1pUUE";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

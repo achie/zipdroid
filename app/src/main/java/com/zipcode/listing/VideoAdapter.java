@@ -10,16 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.squareup.picasso.Picasso;
 import com.zipcode.R;
-import com.zipcode.ZipdroidApplication;
 import com.zipcode.model.Listing;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Random;
 
 public class VideoAdapter extends ArrayAdapter<Listing> {
 
@@ -52,6 +48,7 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
             holder.videoDisplayName = (TextView)row.findViewById(R.id.videoDisplayName);
             holder.videoAddress = (TextView)row.findViewById(R.id.videoAddress);
             holder.videoDistance = (TextView)row.findViewById(R.id.videoDistance);
+            holder.videoItemContainer = (ViewGroup)row.findViewById(R.id.videoItemContainer);
 
             row.setTag(holder);
         } else {
@@ -60,12 +57,15 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
 
         final Listing listing = mListings.get(position);
 
-        Random rand = new Random();
-        double distance = ((double)rand.nextInt(30))/10.0;
         holder.videoListPrice.setText((new DecimalFormat("$#,###")).format(listing.getPrice()));
         holder.videoDisplayName.setText(listing.getDisplayName());
         holder.videoAddress.setText(listing.getAddress());
-        holder.videoDistance.setText(String.format("%1$s miles from you!", (new DecimalFormat("#.#")).format(distance)));
+        holder.videoDistance.setText(String.format("%1$s miles from you!", (new DecimalFormat("#.#")).format(listing.getDistance())));
+        if (listing.isSelected()) {
+            holder.videoItemContainer.setBackgroundColor(mContext.getColor(R.color.primaryLight));
+        } else {
+            holder.videoItemContainer.setBackgroundColor(mContext.getColor(R.color.lightGray));
+        }
 
         Picasso.with(mContext)
                 .load(listing.getMedia().get(0).getUrl())
@@ -75,23 +75,28 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
         row.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int startTimeMillis = 0;
-                boolean autoplay = true;
-                boolean lightboxMode = false;
+                //int startTimeMillis = 0;
+                //boolean autoplay = true;
+                //boolean lightboxMode = false;
 
-                Activity activity = (Activity) mContext;
-                Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                        activity, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
+                //Activity activity = (Activity) mContext;
+                //Intent intent = YouTubeStandalonePlayer.createVideoIntent(
+                //        activity, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
 
-                if (intent != null) {
-                    if (canResolveIntent(intent)) {
-                        activity.startActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
-                    } else {
-                        // Could not resolve the intent - must need to install or update the YouTube API service.
-                        YouTubeInitializationResult.SERVICE_MISSING
-                                .getErrorDialog(activity, REQ_RESOLVE_SERVICE_MISSING).show();
-                    }
+                //if (intent != null) {
+                //    if (canResolveIntent(intent)) {
+                //        activity.startActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
+                //    } else {
+                //        // Could not resolve the intent - must need to install or update the YouTube API service.
+                //        YouTubeInitializationResult.SERVICE_MISSING
+                //                .getErrorDialog(activity, REQ_RESOLVE_SERVICE_MISSING).show();
+                //    }
+                //}
+                for (Listing l: mListings) {
+                    l.setSelected(false);
                 }
+                listing.setSelected(true);
+                notifyDataSetChanged();
             }
         });
 
@@ -105,6 +110,7 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
         TextView videoDisplayName;
         TextView videoAddress;
         TextView videoDistance;
+        ViewGroup videoItemContainer;
     }
 
     private boolean canResolveIntent(Intent intent) {
