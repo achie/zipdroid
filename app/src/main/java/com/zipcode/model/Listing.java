@@ -310,6 +310,9 @@ public class Listing {
     @JsonProperty("video")
     private Video mVideo;
 
+    @JsonProperty("displayName")
+    private String displayName;
+
     public String getAgent() {
         return mAgent;
     }
@@ -1020,6 +1023,14 @@ public class Listing {
 
     public void setBaths(double baths) {
         mBaths = baths;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
 }

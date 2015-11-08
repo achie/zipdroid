@@ -22,4 +22,6 @@
     <color name="image_pager_dot_normal">#22ffffff</color>
     <color name="image_pager_dot_selected">#99ffffff</color>
     <color name="image_pager_dot_border">#55ffffff</color>
+
+    <color name="lightGray">#EEEEEE</color>
 </resources>
