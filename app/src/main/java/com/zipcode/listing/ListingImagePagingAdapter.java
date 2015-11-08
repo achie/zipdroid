@@ -24,6 +24,11 @@ public class ListingImagePagingAdapter extends FragmentStatePagerAdapter {
         }
         mMedia.clear();
         mMedia.addAll(media);
+
+        if (mMedia.size() == 0) {
+            Media mediaImage = new Media();
+            mediaImage.setUrl("http://www.md-a.co.uk/wp-content/uploads/2013/04/ali-house-icon.jpg");
+        }
         notifyDataSetChanged();
     }
 

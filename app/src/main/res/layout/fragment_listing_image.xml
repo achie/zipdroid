@@ -3,6 +3,4 @@
     android:id="@+id/listing_image"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerInside"
-    android:src="@drawable/house_placeholder" />
+    android:layout_height="match_parent" />
