@@ -16,9 +16,12 @@
 
 package com.zipcode;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,12 +44,14 @@ import java.util.List;
 public class VideoActivity extends BaseActivity {
 
     private static final int REQ_START_STANDALONE_PLAYER = 1;
+    private static final int REQ_RESOLVE_SERVICE_MISSING = 2;
 
     private YouTubeThumbnailLoader mThumbnailLoader;
     private YouTubeThumbnailView mThumbnailView;
 
     private ListView mVideoList;
     private List<Listing> mListings;
+    private int activeListing;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,30 @@ public class VideoActivity extends BaseActivity {
             public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
             }
         });
+        ViewGroup videoContainer = (ViewGroup)findViewById(R.id.videoContainer);
+        videoContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int startTimeMillis = 0;
+                boolean autoplay = true;
+                boolean lightboxMode = false;
+
+                Listing listing = mListings.get(activeListing);
+                Activity activity = VideoActivity.this;
+                Intent intent = YouTubeStandalonePlayer.createVideoIntent(
+                        VideoActivity.this, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
+
+                if (intent != null) {
+                    if (canResolveIntent(intent)) {
+                        activity.startActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
+                    } else {
+                        // Could not resolve the intent - must need to install or update the YouTube API service.
+                        YouTubeInitializationResult.SERVICE_MISSING
+                                .getErrorDialog(activity, REQ_RESOLVE_SERVICE_MISSING).show();
+                    }
+                }
+            }
+        });
 
         mApi.getVideos(new Callback<List<Listing> >() {
             @Override
@@ -93,23 +122,6 @@ public class VideoActivity extends BaseActivity {
                 mVideoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //int startTimeMillis = 0;
-                        //boolean autoplay = true;
-                        //boolean lightboxMode = false;
-
-                        //Activity activity = (Activity) mContext;
-                        //Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                        //        activity, ZipdroidApplication.DEVELOPER_KEY, listing.getVideo().getYoutubeId(), startTimeMillis, autoplay, lightboxMode);
-
-                        //if (intent != null) {
-                        //    if (canResolveIntent(intent)) {
-                        //        activity.startActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
-                        //    } else {
-                        //        // Could not resolve the intent - must need to install or update the YouTube API service.
-                        //        YouTubeInitializationResult.SERVICE_MISSING
-                        //                .getErrorDialog(activity, REQ_RESOLVE_SERVICE_MISSING).show();
-                        //    }
-                        //}
                         Listing listing = listings.get(position);
                         for (Listing l: listings) {
                             l.setSelected(false);
@@ -120,6 +132,7 @@ public class VideoActivity extends BaseActivity {
                         if (mThumbnailLoader != null) {
                             mThumbnailLoader.setVideo(listing.getVideo().getYoutubeId());
                         }
+                        activeListing = position;
                     }
                 });
             }
@@ -150,5 +163,10 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_video;
+    }
+
+    private boolean canResolveIntent(Intent intent) {
+        List<ResolveInfo> resolveInfo = this.getPackageManager().queryIntentActivities(intent, 0);
+        return resolveInfo != null && !resolveInfo.isEmpty();
     }
 }
