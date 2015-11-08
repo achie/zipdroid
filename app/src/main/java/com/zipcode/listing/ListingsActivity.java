@@ -4,20 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-
+import butterknife.OnClick;
 import com.zipcode.BaseActivity;
 import com.zipcode.R;
 import com.zipcode.VideoActivity;
 import com.zipcode.model.Listing;
 import com.zipcode.model.response.ListingsResponse;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListingsActivity extends BaseActivity implements ListingFragment.ListingsTransmitter {
     private List<Listing> mListings;
@@ -85,7 +83,7 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
 
     private void showNextListing() {
         mCurrentListingPosition++;
-        if (mListings.size() > mCurrentListingPosition) {
+        if (mListings != null && mListings.size() > mCurrentListingPosition) {
             ListingFragment newFragment = ListingFragment.getInstance(mCurrentListingPosition);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.scrollView, newFragment);
