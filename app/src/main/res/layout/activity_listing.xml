@@ -91,7 +91,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="#27DBB4"
+            app:backgroundTint="#8BC34A"
             android:clickable="true"
             android:src="@mipmap/ic_action_thumbs_up" />
 
