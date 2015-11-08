@@ -1,62 +1,56 @@
 package com.zipcode.listing;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.viewpagerindicator.CirclePageIndicator;
 import com.zipcode.BaseActivity;
 import com.zipcode.R;
 import com.zipcode.model.Listing;
-import com.zipcode.model.Media;
 import com.zipcode.model.response.ListingsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class ListingsActivity extends BaseActivity implements OnMapReadyCallback {
-//    private MapFragment mMapFragment;
-
-//    @InjectView(R.id.listing_image_subtitle)
-//    TextView mListingImageSubtitle;
-    @InjectView(R.id.listing_images_pager)
-    ViewPager mListingImagesPager;
-    @InjectView(R.id.image_position_indicator)
-    CirclePageIndicator mPageIndicator;
+public class ListingsActivity extends BaseActivity implements ListingFragment.ListingsTransmitter {
 
     private ListingImagePagingAdapter mImagesAdapter;
+    private List<Listing> mListings;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_listing;
+        return R.layout.activity_listings;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mMapFragment = (MapFragment) getFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mMapFragment.getMapAsync(this);
 
-        mImagesAdapter = new ListingImagePagingAdapter(getSupportFragmentManager(), new ArrayList<Media>());
-        mListingImagesPager.setAdapter(mImagesAdapter);
-        mPageIndicator.setViewPager(mListingImagesPager);
         loadListing();
-    }
 
-    @Override
-    public void onMapReady(GoogleMap map) {
-    }
+        if (findViewById(R.id.scrollView) != null) {
 
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create a new Fragment to be placed in the activity layout
+            ListingFragment fragment = ListingFragment.getInstance(0);
+
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.scrollView, fragment).commit();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,7 +75,7 @@ public class ListingsActivity extends BaseActivity implements OnMapReadyCallback
             @Override
             public void success(ListingsResponse listingsResponse, Response response) {
                 if (listingsResponse != null) {
-                    loadImages(listingsResponse.getListings());
+                    loadListings(listingsResponse.getListings());
                 }
             }
 
@@ -93,10 +87,16 @@ public class ListingsActivity extends BaseActivity implements OnMapReadyCallback
         });
     }
 
-    private void loadImages(List<Listing> listings) {
-        if (listings != null && !listings.isEmpty()) {
-            mImagesAdapter.setMedia(listings.get(0).getMedia());
-            mPageIndicator.notifyDataSetChanged();
+    private synchronized void loadListings(List<Listing> listings) {
+        if (mListings == null) {
+            mListings = new ArrayList<>();
         }
+        mListings.clear();
+        mListings.addAll(listings);
+    }
+
+    @Override
+    public List<Listing> getListings() {
+        return mListings;
     }
 }

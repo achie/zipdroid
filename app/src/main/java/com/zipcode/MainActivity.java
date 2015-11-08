@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.zipcode.listing.ListingActivity;
+import com.zipcode.listing.ListingsActivity;
 import com.zipcode.model.response.ListingsResponse;
 
 import butterknife.OnClick;
@@ -50,6 +51,11 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, VideoActivity.class));
             }
         });
+    }
+
+    @OnClick (R.id.btnListingsAll)
+    void onAllListingsClick() {
+        startActivity(new Intent(MainActivity.this, ListingsActivity.class));
     }
 
     @Override
