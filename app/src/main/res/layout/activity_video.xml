@@ -24,7 +24,7 @@
             android:id="@+id/videoContainer"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:background="@color/lightGray"
+            android:paddingBottom="1dp"
             >
         <com.google.android.youtube.player.YouTubeThumbnailView
                 android:id="@+id/videoThumbnail"
@@ -45,5 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="true"
-            android:id="@+id/videoListView" />
+            android:id="@+id/videoListView"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:paddingBottom="4dp"
+            />
 </LinearLayout>
