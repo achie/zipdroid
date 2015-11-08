@@ -1,60 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@android:color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/include_activity_toolbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/listing_image_height">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/listing_images_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/image_position_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dip"
+                    app:fillColor="@color/image_pager_dot_selected"
+                    app:pageColor="@color/image_pager_dot_normal"
+                    app:radius="2dp"
+                    app:strokeColor="@color/image_pager_dot_border"
+                    app:strokeWidth="1dp" />
+
+                <TextView
+                    android:id="@+id/listing_image_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_listing_subtitle"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:text="$1,200,000"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <!--<fragment-->
+                <!--android:id="@+id/map"-->
+                <!--android:name="com.google.android.gms.maps.MapFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="280dp"-->
+                <!--android:layout_gravity="center_horizontal" />-->
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        app:layout_anchor="@id/scrollView"
+        app:layout_anchorGravity="bottom|center_horizontal">
 
-        <include layout="@layout/include_activity_toolbar" />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#90A4AE"
+            android:clickable="true"
+            android:src="@mipmap/ic_action_block" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/listing_image_height">
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#27DBB4"
+            android:clickable="true"
+            android:src="@mipmap/ic_action_thumbs_up" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/listing_images_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/image_position_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:padding="10dip"
-                app:fillColor="@color/image_pager_dot_selected"
-                app:pageColor="@color/image_pager_dot_normal"
-                app:radius="2dp"
-                app:strokeColor="@color/image_pager_dot_border"
-                app:strokeWidth="1dp" />
-
-            <TextView
-                android:id="@+id/listing_image_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/bg_listing_subtitle"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
-                android:text="$1,200,000"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_gravity="center_horizontal" />
     </LinearLayout>
-</ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

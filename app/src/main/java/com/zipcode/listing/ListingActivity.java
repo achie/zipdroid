@@ -5,10 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.zipcode.BaseActivity;
@@ -26,7 +24,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class ListingActivity extends BaseActivity implements OnMapReadyCallback {
-    private MapFragment mMapFragment;
+//    private MapFragment mMapFragment;
 
 //    @InjectView(R.id.listing_image_subtitle)
 //    TextView mListingImageSubtitle;
@@ -45,9 +43,9 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
-        mMapFragment.getMapAsync(this);
+//        mMapFragment = (MapFragment) getFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mMapFragment.getMapAsync(this);
 
         mImagesAdapter = new ListingImagePagingAdapter(getSupportFragmentManager(), new ArrayList<Media>());
         mListingImagesPager.setAdapter(mImagesAdapter);
@@ -71,12 +69,6 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_thumbs_down:
-                Toast.makeText(this, "Thumbs Down", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_thumbs_up:
-                Toast.makeText(this, "Thumbs Up", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.action_settings:
                 return true;
         }
