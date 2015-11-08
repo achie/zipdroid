@@ -95,4 +95,9 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
             finish();
         }
     }
+
+    @Override
+    protected boolean showUpNavigation() {
+        return false;
+    }
 }
