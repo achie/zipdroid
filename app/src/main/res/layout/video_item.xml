@@ -42,11 +42,11 @@
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:orientation="vertical"
-            android:background="@color/lightGray"
+            android:background="@android:color/white"
             >
         <TextView
                 android:id="@+id/videoDisplayName"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_width="match_parent"
                 android:paddingTop="5dp"
                 android:textSize="22sp"
@@ -56,7 +56,7 @@
                 />
         <TextView
                 android:id="@+id/videoAddress"
-                android:layout_height="35dp"
+                android:layout_height="45dp"
                 android:layout_width="match_parent"
                 android:textSize="15sp"
                 android:text="123 Mercer St"

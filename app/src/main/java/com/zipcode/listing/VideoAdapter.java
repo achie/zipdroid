@@ -62,9 +62,9 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
         holder.videoAddress.setText(listing.getAddress());
         holder.videoDistance.setText(String.format("%1$s miles from you!", (new DecimalFormat("#.#")).format(listing.getDistance())));
         if (listing.isSelected()) {
-            holder.videoItemContainer.setBackgroundColor(mContext.getColor(R.color.primaryLight));
-        } else {
             holder.videoItemContainer.setBackgroundColor(mContext.getColor(R.color.lightGray));
+        } else {
+            holder.videoItemContainer.setBackgroundColor(mContext.getColor(android.R.color.white));
         }
 
         Picasso.with(mContext)
@@ -84,10 +84,5 @@ public class VideoAdapter extends ArrayAdapter<Listing> {
         TextView videoAddress;
         TextView videoDistance;
         ViewGroup videoItemContainer;
-    }
-
-    private boolean canResolveIntent(Intent intent) {
-        List<ResolveInfo> resolveInfo = mContext.getPackageManager().queryIntentActivities(intent, 0);
-        return resolveInfo != null && !resolveInfo.isEmpty();
     }
 }
