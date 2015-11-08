@@ -87,7 +87,6 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
             ListingFragment newFragment = ListingFragment.getInstance(mCurrentListingPosition);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.scrollView, newFragment);
-            transaction.addToBackStack(null);
             transaction.commit();
         }
     }
