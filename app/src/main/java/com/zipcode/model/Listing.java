@@ -11,7 +11,7 @@ import java.util.Random;
 public class Listing {
     public Listing() {
         Random rand = new Random();
-        mDistance = ((double)rand.nextInt(30))/10.0;
+        mDistance = ((double)rand.nextInt(30)+1)/10.0;
     }
     @JsonProperty("agent")
     private String mAgent;
