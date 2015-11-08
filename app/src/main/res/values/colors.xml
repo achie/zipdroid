@@ -16,6 +16,7 @@
 
     <color name="textPrimary">#6B7799</color>
     <color name="textSecondary">#536391</color>
+    <color name="textButton">#454545</color>
     <color name="textHint">#ACB2C2</color>
     <color name="divider">#9FACCF</color>
 
