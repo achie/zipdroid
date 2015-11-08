@@ -43,7 +43,7 @@
                     android:padding="10dip"
                     app:fillColor="@color/image_pager_dot_selected"
                     app:pageColor="@color/image_pager_dot_normal"
-                    app:radius="2dp"
+                    app:radius="3dp"
                     app:strokeColor="@color/image_pager_dot_border"
                     app:strokeWidth="1dp" />
 
@@ -60,22 +60,75 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
+                <TextView
+                    android:id="@+id/listing_image_footage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="8dp"
+                    android:text="3bed, 2.0bath | 2400 sqft"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
             </RelativeLayout>
 
-            <!--<fragment-->
-                <!--android:id="@+id/map"-->
-                <!--android:name="com.google.android.gms.maps.MapFragment"-->
+            <!--<TextView-->
                 <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="280dp"-->
-                <!--android:layout_gravity="center_horizontal" />-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/textPrimary"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:textAppearance="?android:textAppearanceMedium"-->
+                <!--android:textSize="14sp"-->
+                <!--android:text="ADDRESS:"/>-->
+
+            <TextView
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textSecondary"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:textSize="18sp"
+                android:text="94 Jackson St, Unit 3, San Francisco"/>
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/textPrimary"-->
+                <!--android:textAppearance="?android:textAppearanceMedium"-->
+                <!--android:layout_marginTop="24dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:textSize="14sp"-->
+                <!--android:text="BATH:"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/bathroomsText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/textSecondary"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="3b | 2 hb"/>-->
+
+            <!--<fragment-->
+            <!--android:id="@+id/map"-->
+            <!--android:name="com.google.android.gms.maps.MapFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="280dp"-->
+            <!--android:layout_gravity="center_horizontal" />-->
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
         app:layout_anchor="@id/scrollView"
         app:layout_anchorGravity="bottom|center_horizontal">
 
@@ -83,17 +136,17 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="#90A4AE"
             android:clickable="true"
-            android:src="@mipmap/ic_action_block" />
+            android:src="@mipmap/ic_action_block"
+            app:backgroundTint="@color/action_secondary" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="#8BC34A"
             android:clickable="true"
-            android:src="@mipmap/ic_action_thumbs_up" />
+            android:src="@mipmap/ic_action_thumbs_up"
+            app:backgroundTint="@color/accent" />
 
     </LinearLayout>
 
