@@ -4,15 +4,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.zipcode.R;
 import com.zipcode.model.Listing;
 import com.zipcode.model.Media;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,12 +54,57 @@ public class ListingFragment extends Fragment {
         listingImagesPager.setAdapter(mImagesAdapter);
         pageIndicator.setViewPager(listingImagesPager);
 
+        TextView priceTextView = (TextView) layout.findViewById(R.id.listing_image_subtitle);
+        TextView metaTextView = (TextView) layout.findViewById(R.id.listing_image_footage);
+        TextView displayNameTextView = (TextView) layout.findViewById(R.id.displayNameText);
+        TextView addressTextView = (TextView) layout.findViewById(R.id.addressText);
+
         if (mListingsTransmitter != null) {
             List<Listing> listings = mListingsTransmitter.getListings();
             if (listings != null && listings.size() > mListingPosition) {
-                if (listings.get(mListingPosition).getMedia() != null) {
-                    mImagesAdapter.setMedia(listings.get(mListingPosition).getMedia());
-                    pageIndicator.notifyDataSetChanged();
+                Listing listing = listings.get(mListingPosition);
+                if (listing != null) {
+                    if (listing.getMedia() != null) {
+                        mImagesAdapter.setMedia(listing.getMedia());
+                        pageIndicator.notifyDataSetChanged();
+                    }
+
+                    priceTextView.setText((new DecimalFormat("$#,###")).format(listing.getPrice()));
+
+                    StringBuilder builder = new StringBuilder();
+                    if (listing.getBedrooms() > 0) {
+                        builder.append(listing.getBedrooms());
+                        builder.append(" bed");
+                    }
+
+                    if (listing.getBaths() > 0) {
+                        if (builder.length() > 0) {
+                            builder.append(", ");
+                        }
+                        builder.append((new DecimalFormat("0.# bath")).format(listing.getBaths()));
+                    }
+
+                    if (listing.getSquareFootage() > 0) {
+                        if (builder.length() > 0) {
+                            builder.append(" | ");
+                        }
+                        builder.append((new DecimalFormat("#,### sqft")).format(listing.getSquareFootage()));
+                    }
+                    metaTextView.setText(builder.toString());
+
+                    if (!TextUtils.isEmpty(listing.getDisplayName())) {
+                        displayNameTextView.setVisibility(View.VISIBLE);
+                        displayNameTextView.setText(listing.getDisplayName());
+                    } else {
+                        displayNameTextView.setVisibility(View.GONE);
+                    }
+
+                    if (!TextUtils.isEmpty(listing.getAddress())) {
+                        addressTextView.setVisibility(View.VISIBLE);
+                        addressTextView.setText(listing.getAddress());
+                    } else {
+                        addressTextView.setVisibility(View.GONE);
+                    }
                 }
             }
         }

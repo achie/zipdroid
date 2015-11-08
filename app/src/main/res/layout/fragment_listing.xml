@@ -68,14 +68,23 @@
     <!--android:text="ADDRESS:"/>-->
 
     <TextView
-        android:id="@+id/addressText"
+        android:id="@+id/displayNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="94 Jackson St, Unit 3, San Francisco"
+        android:hint="Name"
         android:textColor="@color/textSecondary"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/addressText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/textPrimary"
+        android:textSize="16sp" />
 
     <!--<TextView-->
     <!--android:layout_width="match_parent"-->

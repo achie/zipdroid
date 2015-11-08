@@ -156,6 +156,9 @@ public class Listing {
     @JsonProperty("acres")
     private double mAcres;
 
+    @JsonProperty("squareFootage")
+    private double mSquareFootage;
+
     @JsonProperty("livingArea")
     private double mLivingArea;
 
@@ -622,6 +625,14 @@ public class Listing {
 
     public void setAcres(double acres) {
         mAcres = acres;
+    }
+
+    public double getSquareFootage() {
+        return mSquareFootage;
+    }
+
+    public void setSquareFootage(double squareFootage) {
+        mSquareFootage = squareFootage;
     }
 
     public double getLivingArea() {
