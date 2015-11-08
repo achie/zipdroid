@@ -30,6 +30,7 @@
         app:layout_anchorGravity="bottom|center_horizontal">
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_action_block"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/fab_margin"
@@ -38,6 +39,7 @@
             app:backgroundTint="@color/action_secondary" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_action_thumbs_up"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/fab_margin"

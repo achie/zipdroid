@@ -1,9 +1,8 @@
 package com.zipcode.listing;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.zipcode.BaseActivity;
 import com.zipcode.R;
@@ -13,14 +12,14 @@ import com.zipcode.model.response.ListingsResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class ListingsActivity extends BaseActivity implements ListingFragment.ListingsTransmitter {
-
-    private ListingImagePagingAdapter mImagesAdapter;
     private List<Listing> mListings;
+    private int mCurrentListingPosition;
 
     @Override
     protected int getLayoutResId() {
@@ -30,44 +29,7 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         loadListing();
-
-        if (findViewById(R.id.scrollView) != null) {
-
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
-            if (savedInstanceState != null) {
-                return;
-            }
-
-            // Create a new Fragment to be placed in the activity layout
-            ListingFragment fragment = ListingFragment.getInstance(0);
-
-
-            // Add the fragment to the 'fragment_container' FrameLayout
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.scrollView, fragment).commit();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_listing, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.action_settings:
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     void loadListing() {
@@ -82,7 +44,7 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
             @Override
             public void failure(RetrofitError error) {
                 error.printStackTrace();
-                Log.v("$#######" , "Retrofit error; " + error.getMessage());
+                Log.v("$#######", "Retrofit error; " + error.getMessage());
             }
         });
     }
@@ -93,10 +55,40 @@ public class ListingsActivity extends BaseActivity implements ListingFragment.Li
         }
         mListings.clear();
         mListings.addAll(listings);
+        mCurrentListingPosition = 0;
+
+        if (findViewById(R.id.scrollView) != null) {
+            ListingFragment fragment = ListingFragment.getInstance(mCurrentListingPosition);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.scrollView, fragment).commit();
+        }
     }
 
     @Override
     public List<Listing> getListings() {
         return mListings;
+    }
+
+    @OnClick(R.id.btn_action_thumbs_up)
+    void onThumbsUpClick() {
+        //TODO send vote
+        showNextListing();
+    }
+
+    @OnClick(R.id.btn_action_block)
+    void onBlockClick() {
+        //TODO send vote
+        showNextListing();
+    }
+
+    private void showNextListing() {
+        mCurrentListingPosition++;
+        if (mListings.size() >= mCurrentListingPosition) {
+            ListingFragment newFragment = ListingFragment.getInstance(mCurrentListingPosition);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.scrollView, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 }
