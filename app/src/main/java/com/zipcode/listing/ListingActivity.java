@@ -3,6 +3,9 @@ package com.zipcode.listing;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -54,6 +57,31 @@ public class ListingActivity extends BaseActivity implements OnMapReadyCallback 
 
     @Override
     public void onMapReady(GoogleMap map) {
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_listing, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_thumbs_down:
+                Toast.makeText(this, "Thumbs Down", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_thumbs_up:
+                Toast.makeText(this, "Thumbs Up", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_settings:
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     void loadListing() {
