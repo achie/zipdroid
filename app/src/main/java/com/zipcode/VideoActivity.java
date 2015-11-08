@@ -25,17 +25,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.zipcode.listing.VideoAdapter;
 import com.zipcode.model.Listing;
+
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import java.util.List;
 
 /**
  * A simple YouTube Android API demo application which shows how to use a
@@ -72,7 +74,7 @@ public class VideoActivity extends BaseActivity {
                     public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
                     }
                 });
-                if (mListings != null) {
+                if (mListings != null && !mListings.isEmpty()) {
                     mThumbnailLoader.setVideo(mListings.get(0).getVideo().getYoutubeId());
                 }
             }
